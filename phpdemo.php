@@ -21,13 +21,21 @@ $title="php_";
     <h1> <?php echo "".$str . " " .$str1?> </h1>
     <div class="card" style="width: 18rem;" >
   <div class="card-body">
-    <form method="Post" action="form.php">
+ <!--    <form method="Post" action="form.php"> -->
+    <form method="Post" action="phpdemo.php">
    
     
     name:    <input type="text"  class="form-control" name="name"><br>
       email:   <input  type="email" class="form-control" name="email"><br>
       <br>
      <button type="submit" class="btn btn-primary"> submit</button>
+     <?php
+     if($name !="" && $email !="")
+     ?>
+     <div>
+   name: <?php echo $name; ?><br>
+   Your email address is: <?php echo $email ?>
+    </div>
     </form>
    
 <?php
