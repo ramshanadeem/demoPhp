@@ -2,7 +2,25 @@
 $title="php_";
  $str="php first";
  $str1="class";
+ /* $name="";
+ $email=""; */
+
+// define variables and set to empty values
+$name = $email  = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+  $email = test_input($_POST["email"]);
  
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +40,7 @@ $title="php_";
     <div class="card" style="width: 18rem;" >
   <div class="card-body">
  <!--    <form method="Post" action="form.php"> -->
-    <form method="Post" action="phpdemo.php">
+    <form method="Post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
    
     
     name:    <input type="text"  class="form-control" name="name"><br>
@@ -30,12 +48,14 @@ $title="php_";
       <br>
      <button type="submit" class="btn btn-primary"> submit</button>
      <?php
-     if($name !="" && $email !="")
+     if($name!= "" && $email!= "")
+     {
      ?>
      <div>
-   name: <?php echo $name; ?><br>
-   Your email address is: <?php echo $email ?>
-    </div>
+   name: <?php echo $name; ?><br></div>
+ <div>  Your email address is: <?php echo $email;?></div>
+ <?php } ?>
+
     </form>
    
 <?php
